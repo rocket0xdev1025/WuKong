@@ -3,437 +3,984 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ansem Wukong ($ANUKONG) — King Monkey on Solana</title>
+  <title>Ansem Wukong — $ANUKONG | King Monkey on Solana</title>
   <meta name="description" content="King Monkey Ansem Wukong is a legendary meme warrior, bringing unstoppable Solana energy, fearless vibes, and moon-bound chaos." />
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Serif+SC:wght@700;900&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Ma+Shan+Zheng&family=Syne:wght@400;600;700;800&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet" />
   <script>
     tailwind.config = {
       theme: {
         extend: {
           fontFamily: {
-            display: ['"Bebas Neue"', 'sans-serif'],
-            chinese: ['"Noto Serif SC"', 'serif'],
-            body: ['Outfit', 'sans-serif'],
+            epic: ['"Cinzel Decorative"', 'serif'],
+            brush: ['"Ma Shan Zheng"', 'cursive'],
+            tale: ['"ZCOOL XiaoWei"', 'serif'],
+            body: ['Syne', 'sans-serif'],
           },
           colors: {
-            wukong: {
-              gold: '#D4A017',
-              'gold-light': '#F5C842',
-              'gold-dark': '#8B6914',
-              crimson: '#B91C1C',
-              'crimson-dark': '#7F1D1D',
-              ink: '#0A0A0F',
-              smoke: '#1A1520',
-              mist: '#2D2438',
-            },
-          },
-          animation: {
-            'float': 'float 6s ease-in-out infinite',
-            'glow-pulse': 'glow-pulse 3s ease-in-out infinite',
-            'shimmer': 'shimmer 2.5s linear infinite',
-          },
-          keyframes: {
-            float: {
-              '0%, 100%': { transform: 'translateY(0px)' },
-              '50%': { transform: 'translateY(-12px)' },
-            },
-            'glow-pulse': {
-              '0%, 100%': { boxShadow: '0 0 20px rgba(212, 160, 23, 0.3)' },
-              '50%': { boxShadow: '0 0 40px rgba(212, 160, 23, 0.6), 0 0 80px rgba(185, 28, 28, 0.2)' },
-            },
-            shimmer: {
-              '0%': { backgroundPosition: '-200% center' },
-              '100%': { backgroundPosition: '200% center' },
-            },
+            jade: { DEFAULT: '#1a3a2f', dark: '#0d1f18', light: '#2d5a47' },
+            flame: { DEFAULT: '#c45c26', bright: '#e87830', ember: '#8b3a12' },
+            celestial: { DEFAULT: '#d4a84b', glow: '#f0c96e', deep: '#9a7228' },
+            void: '#060504',
+            mist: 'rgba(255, 235, 200, 0.06)',
           },
         },
       },
     };
   </script>
   <style>
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
     body {
-      background-color: #0A0A0F;
-      background-image:
-        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(185, 28, 28, 0.15), transparent),
-        radial-gradient(ellipse 60% 40% at 80% 60%, rgba(212, 160, 23, 0.08), transparent),
-        radial-gradient(ellipse 50% 30% at 10% 80%, rgba(185, 28, 28, 0.06), transparent);
+      font-family: 'Syne', sans-serif;
+      background: #060504;
+      color: #f5e6c8;
+      overflow-x: hidden;
     }
 
-    .gold-text {
-      background: linear-gradient(135deg, #F5C842 0%, #D4A017 40%, #F5E6A3 60%, #8B6914 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .gold-border {
-      border-image: linear-gradient(135deg, #F5C842, #D4A017, #8B6914) 1;
-    }
-
-    .btn-gold {
-      background: linear-gradient(135deg, #F5C842 0%, #D4A017 50%, #8B6914 100%);
-      background-size: 200% auto;
-      transition: all 0.3s ease;
-    }
-
-    .btn-gold:hover {
-      background-position: right center;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(212, 160, 23, 0.4);
-    }
-
-    .cloud-pattern {
-      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D4A017' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    }
-
-    .step-card::before {
-      content: '';
-      position: absolute;
+    /* ── MONKEY KING BACKGROUND ── */
+    .mk-bg {
+      position: fixed;
       inset: 0;
-      border-radius: 1rem;
-      padding: 1px;
-      background: linear-gradient(135deg, rgba(245, 200, 66, 0.4), rgba(185, 28, 28, 0.2), rgba(245, 200, 66, 0.1));
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
+      z-index: 0;
       pointer-events: none;
     }
 
-    .copied-toast {
-      transform: translateY(100px);
-      opacity: 0;
-      transition: all 0.3s ease;
+    .mk-bg__image {
+      position: absolute;
+      inset: -5%;
+      background: url('banner.png') center center / cover no-repeat;
+      transform: scale(1.08);
+      will-change: transform;
+      transition: transform 0.1s linear;
     }
 
-    .copied-toast.show {
+    .mk-bg__veil {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 90% 60% at 70% 30%, rgba(196, 92, 38, 0.18), transparent 60%),
+        radial-gradient(ellipse 70% 50% at 20% 80%, rgba(212, 168, 75, 0.1), transparent 55%),
+        linear-gradient(180deg,
+          rgba(6, 5, 4, 0.55) 0%,
+          rgba(6, 5, 4, 0.72) 35%,
+          rgba(6, 5, 4, 0.88) 65%,
+          rgba(6, 5, 4, 0.96) 100%
+        );
+    }
+
+    .mk-bg__grain {
+      position: absolute;
+      inset: 0;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    /* ── FLOATING CLOUDS & EMBERS ── */
+    .particles {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .cloud {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(255, 240, 210, 0.07) 0%, transparent 70%);
+      animation: cloud-drift linear infinite;
+    }
+
+    .ember {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: #f0c96e;
+      box-shadow: 0 0 6px #e87830, 0 0 12px #c45c26;
+      animation: ember-rise linear infinite;
+    }
+
+    @keyframes cloud-drift {
+      0%   { transform: translateX(-10vw) translateY(0); opacity: 0; }
+      10%  { opacity: 1; }
+      90%  { opacity: 0.6; }
+      100% { transform: translateX(110vw) translateY(-30px); opacity: 0; }
+    }
+
+    @keyframes ember-rise {
+      0%   { transform: translateY(100vh) translateX(0) scale(0); opacity: 0; }
+      10%  { opacity: 1; transform: translateY(90vh) scale(1); }
+      100% { transform: translateY(-10vh) translateX(40px) scale(0.3); opacity: 0; }
+    }
+
+    @keyframes staff-glow {
+      0%, 100% { box-shadow: 0 0 20px rgba(212, 168, 75, 0.3), inset 0 0 30px rgba(212, 168, 75, 0.05); }
+      50%      { box-shadow: 0 0 50px rgba(232, 120, 48, 0.5), inset 0 0 50px rgba(212, 168, 75, 0.1); }
+    }
+
+    @keyframes ribbon-wave {
+      0%, 100% { transform: rotate(-2deg) scaleX(1); }
+      50%      { transform: rotate(2deg) scaleX(1.02); }
+    }
+
+    @keyframes ink-reveal {
+      from { clip-path: inset(0 100% 0 0); opacity: 0; }
+      to   { clip-path: inset(0 0 0 0); opacity: 1; }
+    }
+
+    @keyframes float-king {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      33%      { transform: translateY(-8px) rotate(0.5deg); }
+      66%      { transform: translateY(-4px) rotate(-0.5deg); }
+    }
+
+    @keyframes headband-shine {
+      0%   { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
       transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.15s; }
+    .reveal-delay-2 { transition-delay: 0.3s; }
+    .reveal-delay-3 { transition-delay: 0.45s; }
+
+    /* ── SCROLL PANEL (ancient parchment) ── */
+    .scroll-panel {
+      position: relative;
+      background: linear-gradient(135deg,
+        rgba(20, 14, 8, 0.92) 0%,
+        rgba(30, 20, 10, 0.88) 50%,
+        rgba(18, 12, 6, 0.92) 100%
+      );
+      border: 1px solid rgba(212, 168, 75, 0.25);
+      box-shadow:
+        0 0 0 1px rgba(196, 92, 38, 0.1),
+        0 20px 60px rgba(0, 0, 0, 0.6),
+        inset 0 1px 0 rgba(255, 220, 150, 0.08);
+      backdrop-filter: blur(12px);
+    }
+
+    .scroll-panel::before,
+    .scroll-panel::after {
+      content: '';
+      position: absolute;
+      left: 12px;
+      right: 12px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #d4a84b, #c45c26, #d4a84b, transparent);
+      opacity: 0.5;
+    }
+    .scroll-panel::before { top: 0; }
+    .scroll-panel::after  { bottom: 0; }
+
+    /* ── CHAPTER MARKER ── */
+    .chapter-mark {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .chapter-mark__seal {
+      width: 52px;
+      height: 52px;
+      border: 2px solid #c45c26;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Ma Shan Zheng', cursive;
+      font-size: 1.6rem;
+      color: #d4a84b;
+      background: rgba(139, 58, 18, 0.3);
+      transform: rotate(-3deg);
+      flex-shrink: 0;
+      animation: ribbon-wave 4s ease-in-out infinite;
+    }
+    .chapter-mark__line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, #c45c26, transparent);
+    }
+
+    /* ── GOLDEN TITLE ── */
+    .title-gold {
+      background: linear-gradient(120deg, #9a7228 0%, #f0c96e 30%, #fff0c0 50%, #d4a84b 70%, #9a7228 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: headband-shine 4s linear infinite;
+    }
+
+    /* ── STAFF DIVIDER ── */
+    .staff-divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 3rem 0;
+    }
+    .staff-divider__bar {
+      flex: 1;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #d4a84b 20%, #e87830 50%, #d4a84b 80%, transparent);
+      border-radius: 2px;
+      box-shadow: 0 0 12px rgba(212, 168, 75, 0.4);
+    }
+    .staff-divider__gem {
+      width: 14px;
+      height: 14px;
+      background: radial-gradient(circle, #f0c96e, #c45c26);
+      border-radius: 50%;
+      box-shadow: 0 0 16px #e87830;
+      animation: staff-glow 2s ease-in-out infinite;
+    }
+
+    /* ── PILGRIMAGE PATH (how to buy) ── */
+    .pilgrimage-path {
+      position: relative;
+      padding-left: 2.5rem;
+    }
+    .pilgrimage-path::before {
+      content: '';
+      position: absolute;
+      left: 18px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, #d4a84b, #c45c26 50%, rgba(196, 92, 38, 0.2));
+      box-shadow: 0 0 8px rgba(212, 168, 75, 0.3);
+    }
+
+    .pilgrim-step {
+      position: relative;
+      margin-bottom: 2.5rem;
+    }
+    .pilgrim-step:last-child { margin-bottom: 0; }
+
+    .pilgrim-step__node {
+      position: absolute;
+      left: -2.5rem;
+      top: 1.25rem;
+      width: 38px;
+      height: 38px;
+      margin-left: -1px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #f0c96e, #8b3a12);
+      border: 2px solid #d4a84b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 0.85rem;
+      font-weight: 900;
+      color: #060504;
+      box-shadow: 0 0 20px rgba(232, 120, 48, 0.5);
+      z-index: 2;
+    }
+
+    .pilgrim-step__scroll {
+      padding: 1.5rem 1.75rem;
+      border-left: 3px solid rgba(196, 92, 38, 0.5);
+      transition: border-color 0.4s, transform 0.4s;
+    }
+    .pilgrim-step__scroll:hover {
+      border-left-color: #d4a84b;
+      transform: translateX(6px);
+    }
+
+    /* ── LEGEND TRIAD (narrative, not cards) ── */
+    .legend-triad {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+    @media (min-width: 768px) {
+      .legend-triad { grid-template-columns: 1fr 1fr 1fr; }
+    }
+
+    .legend-verse {
+      padding: 2rem 1.5rem;
+      border-bottom: 1px solid rgba(212, 168, 75, 0.12);
+      position: relative;
+      overflow: hidden;
+    }
+    @media (min-width: 768px) {
+      .legend-verse { border-bottom: none; border-right: 1px solid rgba(212, 168, 75, 0.12); }
+      .legend-verse:last-child { border-right: none; }
+    }
+    .legend-verse::after {
+      content: attr(data-glyph);
+      position: absolute;
+      right: -10px;
+      bottom: -20px;
+      font-family: 'Ma Shan Zheng', cursive;
+      font-size: 6rem;
+      color: rgba(212, 168, 75, 0.04);
+      pointer-events: none;
+      line-height: 1;
+    }
+
+    /* ── BUTTONS ── */
+    .btn-staff {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 1rem 2.5rem;
+      font-family: 'Cinzel Decorative', serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.12em;
+      color: #060504;
+      background: linear-gradient(135deg, #f0c96e 0%, #d4a84b 40%, #c45c26 100%);
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+      transition: transform 0.25s, filter 0.25s;
+      animation: staff-glow 3s ease-in-out infinite;
+    }
+    .btn-staff:hover {
+      transform: translateY(-3px) scale(1.03);
+      filter: brightness(1.1);
+    }
+
+    .btn-mist {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 1rem 2.5rem;
+      font-family: 'Cinzel Decorative', serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.12em;
+      color: #d4a84b;
+      background: rgba(6, 5, 4, 0.6);
+      border: 1px solid rgba(212, 168, 75, 0.4);
+      cursor: pointer;
+      text-decoration: none;
+      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+      backdrop-filter: blur(8px);
+      transition: all 0.25s;
+    }
+    .btn-mist:hover {
+      background: rgba(212, 168, 75, 0.12);
+      border-color: #f0c96e;
+      color: #f0c96e;
+      transform: translateY(-2px);
+    }
+
+    /* ── CA SCROLL ── */
+    .ca-scroll {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.75rem 1.25rem;
+      padding: 1rem 1.5rem;
+      background: rgba(6, 5, 4, 0.7);
+      border: 1px dashed rgba(212, 168, 75, 0.35);
+      font-size: 0.8rem;
+    }
+
+    .btn-copy {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.5rem 1rem;
+      background: rgba(196, 92, 38, 0.25);
+      border: 1px solid rgba(196, 92, 38, 0.5);
+      color: #f0c96e;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-copy:hover {
+      background: rgba(196, 92, 38, 0.45);
+      border-color: #e87830;
+    }
+
+    /* ── NAV ── */
+    .nav-ribbon {
+      background: rgba(6, 5, 4, 0.75);
+      border-bottom: 1px solid rgba(196, 92, 38, 0.3);
+      backdrop-filter: blur(16px);
+    }
+
+    .nav-link {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(245, 230, 200, 0.5);
+      text-decoration: none;
+      transition: color 0.2s;
+      position: relative;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: #d4a84b;
+      transition: width 0.3s;
+    }
+    .nav-link:hover { color: #f0c96e; }
+    .nav-link:hover::after { width: 100%; }
+
+    .social-x-bg { background: #0d0d0d; }
+
+    /* ── HERO KING PORTRAIT ── */
+    .king-portrait {
+      position: relative;
+      animation: float-king 5s ease-in-out infinite;
+    }
+    .king-portrait::before {
+      content: '';
+      position: absolute;
+      inset: -20%;
+      background: radial-gradient(ellipse, rgba(232, 120, 48, 0.25) 0%, transparent 65%);
+      z-index: -1;
+      animation: staff-glow 3s ease-in-out infinite;
+    }
+    .king-portrait img {
+      filter: drop-shadow(0 0 40px rgba(212, 168, 75, 0.4)) drop-shadow(0 20px 40px rgba(0,0,0,0.8));
+    }
+
+    /* ── TOAST ── */
+    #toast {
+      transform: translateX(-50%) translateY(80px);
+      opacity: 0;
+      transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    #toast.show {
+      transform: translateX(-50%) translateY(0);
       opacity: 1;
     }
 
-    .banner-overlay {
-      background: linear-gradient(
-        to bottom,
-        rgba(10, 10, 15, 0.3) 0%,
-        rgba(10, 10, 15, 0.6) 50%,
-        rgba(10, 10, 15, 1) 100%
-      );
+    /* ── CHART FRAME ── */
+    .chart-frame {
+      border: 2px solid rgba(212, 168, 75, 0.3);
+      box-shadow:
+        0 0 0 4px rgba(6, 5, 4, 0.8),
+        0 0 60px rgba(196, 92, 38, 0.15),
+        inset 0 0 40px rgba(0, 0, 0, 0.5);
+      position: relative;
+    }
+    .chart-frame::before {
+      content: '天命圖';
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Ma Shan Zheng', cursive;
+      font-size: 1.1rem;
+      color: #d4a84b;
+      background: #0d0b08;
+      padding: 0 1rem;
+      letter-spacing: 0.3em;
+      z-index: 2;
     }
 
-    .social-x {
-      background-color: #0d0d0d;
+    /* ── NARRATIVE TYPEWRITER CURSOR ── */
+    .narrative-cursor::after {
+      content: '|';
+      animation: blink 1s step-end infinite;
+      color: #c45c26;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    main { position: relative; z-index: 2; }
+
+    @media (max-width: 640px) {
+      .pilgrimage-path { padding-left: 2rem; }
+      .pilgrim-step__node { width: 32px; height: 32px; font-size: 0.7rem; left: -2rem; }
     }
   </style>
 </head>
-<body class="font-body text-white antialiased cloud-pattern">
+<body>
 
-  <!-- Toast -->
-  <div id="toast" class="copied-toast fixed bottom-8 left-1/2 -translate-x-1/2 z-50 px-6 py-3 rounded-full bg-wukong-gold text-wukong-ink font-semibold text-sm shadow-lg">
-    Contract address copied!
+  <!-- Fixed Monkey King Background -->
+  <div class="mk-bg" aria-hidden="true">
+    <div class="mk-bg__image" id="parallax-bg"></div>
+    <div class="mk-bg__veil"></div>
+    <div class="mk-bg__grain"></div>
   </div>
 
-  <!-- Navbar -->
-  <nav class="fixed top-0 left-0 right-0 z-40 bg-wukong-ink/80 backdrop-blur-xl border-b border-wukong-gold/10">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16 sm:h-20">
+  <!-- Floating particles -->
+  <div class="particles" id="particles" aria-hidden="true"></div>
+
+  <!-- Toast -->
+  <div id="toast" class="fixed bottom-8 left-1/2 z-50 px-5 py-3 text-sm font-semibold tracking-wider"
+       style="background: linear-gradient(135deg, #d4a84b, #c45c26); color: #060504; border-radius: 2px;">
+    天命已錄 — Contract copied!
+  </div>
+
+  <!-- Nav -->
+  <nav class="nav-ribbon fixed top-0 inset-x-0 z-40">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
       <a href="#" class="flex items-center gap-3 group">
-        <img src="logo.png" alt="Ansem Wukong Logo" class="h-10 sm:h-12 w-auto group-hover:scale-105 transition-transform" />
-        <div class="hidden sm:block">
-          <span class="font-display text-2xl tracking-wider gold-text">ANSEM WUKONG</span>
-          <span class="block text-xs text-wukong-gold/70 tracking-widest -mt-1">$ANUKONG</span>
+        <img src="logo.png" alt="Ansem Wukong" class="h-9 w-auto transition-transform group-hover:scale-110" />
+        <div class="hidden sm:block leading-none">
+          <span class="font-epic text-sm tracking-widest title-gold">ANSEM WUKONG</span>
+          <span class="block font-body text-[10px] tracking-[0.35em] text-celestial/60 mt-0.5">$ANUKONG</span>
         </div>
       </a>
-      <div class="flex items-center gap-3 sm:gap-6">
-        <a href="#about" class="hidden sm:inline text-sm text-gray-400 hover:text-wukong-gold transition-colors">About</a>
-        <a href="#how-to-buy" class="hidden sm:inline text-sm text-gray-400 hover:text-wukong-gold transition-colors">How to Buy</a>
-        <a href="#chart" class="hidden sm:inline text-sm text-gray-400 hover:text-wukong-gold transition-colors">Chart</a>
-        <a href="https://t.me/AnsemWukong" target="_blank" rel="noopener noreferrer" class="hover:scale-110 transition-transform" title="Telegram">
-          <img src="tg.png" alt="Telegram" class="h-8 sm:h-9 w-auto rounded-lg" />
+      <div class="flex items-center gap-4 sm:gap-8">
+        <a href="#prologue" class="nav-link hidden md:inline">Prologue</a>
+        <a href="#legend" class="nav-link hidden md:inline">Legend</a>
+        <a href="#pilgrimage" class="nav-link hidden md:inline">Pilgrimage</a>
+        <a href="#heaven-chart" class="nav-link hidden md:inline">Heaven Chart</a>
+        <a href="https://t.me/AnsemWukong" target="_blank" rel="noopener" class="hover:scale-110 transition-transform">
+          <img src="tg.png" alt="Telegram" class="h-7 sm:h-8 rounded" />
         </a>
-        <a href="https://x.com/AnsemWukong" target="_blank" rel="noopener noreferrer" class="social-x p-1.5 rounded-lg hover:scale-110 transition-transform" title="X / Twitter">
-          <img src="x.png" alt="X / Twitter" class="h-6 sm:h-7 w-auto" />
+        <a href="https://x.com/AnsemWukong" target="_blank" rel="noopener" class="social-x-bg p-1.5 rounded hover:scale-110 transition-transform">
+          <img src="x.png" alt="X" class="h-5 sm:h-6" />
         </a>
       </div>
     </div>
   </nav>
 
-  <!-- Hero -->
-  <header class="relative pt-16 sm:pt-20 overflow-hidden">
-    <div class="relative w-full max-h-[70vh] overflow-hidden">
-      <img src="banner.png" alt="Ansem Wukong Banner" class="w-full h-auto object-cover object-center" />
-      <div class="banner-overlay absolute inset-0"></div>
+  <main>
+
+    <!-- ═══ HERO / PROLOGUE ═══ -->
+    <section id="prologue" class="min-h-screen flex items-center pt-16 pb-20 px-4 sm:px-6">
+      <div class="max-w-6xl mx-auto w-full">
+        <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+
+          <!-- Left: Narrative -->
+          <div class="order-2 lg:order-1">
+            <div class="chapter-mark reveal">
+              <div class="chapter-mark__seal">序</div>
+              <div>
+                <p class="font-brush text-flame text-xl sm:text-2xl tracking-widest">序章 · Prologue</p>
+                <div class="chapter-mark__line mt-1"></div>
+              </div>
+            </div>
+
+            <p class="font-tale text-celestial/70 text-sm tracking-[0.4em] mb-3 reveal reveal-delay-1">猴王降世</p>
+
+            <h1 class="font-epic text-4xl sm:text-5xl lg:text-6xl leading-tight mb-2 reveal reveal-delay-1">
+              <span class="title-gold">ANSEM</span><br />
+              <span class="text-flame-bright" style="text-shadow: 0 0 40px rgba(232,120,48,0.4);">WUKONG</span>
+            </h1>
+
+            <p class="font-epic text-celestial tracking-[0.5em] text-sm mb-6 reveal reveal-delay-2">$ANUKONG</p>
+
+            <p class="font-tale text-base sm:text-lg leading-relaxed text-[#e8d5b0]/80 mb-8 max-w-lg reveal reveal-delay-2" id="narrative-text">
+              King Monkey Ansem Wukong is a legendary meme warrior, bringing unstoppable Solana energy, fearless vibes, and moon-bound chaos.
+            </p>
+
+            <!-- CA -->
+            <div class="ca-scroll mb-8 reveal reveal-delay-3">
+              <span class="font-tale text-celestial/50 tracking-widest text-xs uppercase">Celestial Contract</span>
+              <code id="ca-text" class="font-mono text-celestial-glow text-xs sm:text-sm break-all">TBA</code>
+              <button onclick="copyCA()" class="btn-copy">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                Copy CA
+              </button>
+            </div>
+
+            <div class="flex flex-wrap gap-4 reveal reveal-delay-3">
+              <a href="#" data-pump-link target="_blank" rel="noopener" class="btn-staff">
+                ⚡ Buy Now
+              </a>
+              <a href="#" data-dex-link target="_blank" rel="noopener" class="btn-mist">
+                📜 Chart
+              </a>
+            </div>
+          </div>
+
+          <!-- Right: King Portrait -->
+          <div class="order-1 lg:order-2 flex justify-center lg:justify-end reveal">
+            <div class="king-portrait">
+              <img src="logo.png" alt="King Monkey Ansem Wukong" class="w-56 sm:w-72 lg:w-96 h-auto" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="staff-divider max-w-4xl mx-auto px-4 reveal">
+      <div class="staff-divider__bar"></div>
+      <div class="staff-divider__gem"></div>
+      <div class="staff-divider__bar"></div>
     </div>
 
-    <div class="relative -mt-32 sm:-mt-48 pb-16 sm:pb-24 px-4">
-      <div class="max-w-4xl mx-auto text-center">
-        <div class="inline-block mb-6 animate-float">
-          <img src="logo.png" alt="Ansem Wukong" class="h-28 sm:h-40 w-auto mx-auto drop-shadow-2xl" style="filter: drop-shadow(0 0 30px rgba(212, 160, 23, 0.5));" />
+    <!-- ═══ CHAPTER I: THE LEGEND ═══ -->
+    <section id="legend" class="py-20 sm:py-28 px-4 sm:px-6">
+      <div class="max-w-5xl mx-auto">
+        <div class="chapter-mark reveal">
+          <div class="chapter-mark__seal">壹</div>
+          <div>
+            <p class="font-brush text-flame text-xl sm:text-2xl">第一章 · The Golden Staff</p>
+            <p class="font-tale text-celestial/40 text-xs tracking-[0.3em] mt-0.5">Legend of the Fearless King</p>
+          </div>
         </div>
 
-        <p class="font-chinese text-wukong-crimson text-lg sm:text-xl tracking-[0.3em] mb-2 opacity-80">猴王</p>
-        <h1 class="font-display text-5xl sm:text-7xl md:text-8xl tracking-wider gold-text mb-3">
-          ANSEM WUKONG
-        </h1>
-        <p class="text-wukong-gold font-semibold text-lg sm:text-xl tracking-widest mb-6">$ANUKONG</p>
+        <div class="scroll-panel rounded-sm p-6 sm:p-10 reveal">
+          <p class="font-tale text-center text-[#e8d5b0]/60 text-sm sm:text-base leading-loose mb-8 max-w-2xl mx-auto italic">
+            "Born from the stone of Solana's chain, the King seized the Ruyi Jingu Bang of liquidity and declared war on mediocrity. No god, no demon, no bear market shall stand before him."
+          </p>
 
-        <p class="text-gray-300 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed mb-8 px-2">
-          King Monkey Ansem Wukong is a legendary meme warrior, bringing unstoppable Solana energy, fearless vibes, and moon-bound chaos.
+          <div class="legend-triad">
+            <div class="legend-verse reveal" data-glyph="火">
+              <p class="font-brush text-3xl text-flame mb-3">火</p>
+              <h3 class="font-epic text-sm tracking-widest text-celestial mb-2">UNSTOPPABLE ENERGY</h3>
+              <p class="font-tale text-sm text-[#c8b090]/70 leading-relaxed">
+                Forged on Solana's blazing TPS — swifter than the somersault cloud, fiercer than ten thousand transactions per second.
+              </p>
+            </div>
+            <div class="legend-verse reveal reveal-delay-1" data-glyph="王">
+              <p class="font-brush text-3xl text-flame mb-3">王</p>
+              <h3 class="font-epic text-sm tracking-widest text-celestial mb-2">FEARLESS VIBES</h3>
+              <p class="font-tale text-sm text-[#c8b090]/70 leading-relaxed">
+                The Monkey King never kneels. Ansem Wukong storms the arena bare-fisted, golden headband blazing, zero hesitation.
+              </p>
+            </div>
+            <div class="legend-verse reveal reveal-delay-2" data-glyph="月">
+              <p class="font-brush text-3xl text-flame mb-3">月</p>
+              <h3 class="font-epic text-sm tracking-widest text-celestial mb-2">MOON-BOUND CHAOS</h3>
+              <p class="font-tale text-sm text-[#c8b090]/70 leading-relaxed">
+                Staff raised to the heavens. Eyes locked on the moon. $ANUKONG rides the golden nimbus into legend.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="staff-divider max-w-4xl mx-auto px-4 reveal">
+      <div class="staff-divider__bar"></div>
+      <div class="staff-divider__gem"></div>
+      <div class="staff-divider__bar"></div>
+    </div>
+
+    <!-- ═══ CHAPTER II: THE PILGRIMAGE (How to Buy) ═══ -->
+    <section id="pilgrimage" class="py-20 sm:py-28 px-4 sm:px-6">
+      <div class="max-w-3xl mx-auto">
+        <div class="chapter-mark reveal">
+          <div class="chapter-mark__seal">貳</div>
+          <div>
+            <p class="font-brush text-flame text-xl sm:text-2xl">第二章 · The Pilgrimage</p>
+            <p class="font-tale text-celestial/40 text-xs tracking-[0.3em] mt-0.5">How to Summon $ANUKONG with SOL</p>
+          </div>
+        </div>
+
+        <p class="font-tale text-[#e8d5b0]/50 text-sm mb-10 reveal italic text-center">
+          Four trials stand between you and the Monkey King's realm. Complete the pilgrimage. Claim your destiny.
         </p>
 
-        <!-- Contract Address -->
-        <div class="inline-flex flex-col sm:flex-row items-center gap-3 mb-8 p-4 rounded-2xl bg-wukong-smoke/80 border border-wukong-gold/20 backdrop-blur-sm max-w-full">
-          <span class="text-xs sm:text-sm text-gray-400 uppercase tracking-wider shrink-0">Contract Address</span>
-          <code id="ca-text" class="text-wukong-gold-light text-xs sm:text-sm font-mono break-all">TBA</code>
-          <button
-            onclick="copyCA()"
-            class="shrink-0 flex items-center gap-2 px-4 py-2 rounded-lg bg-wukong-mist hover:bg-wukong-gold/20 border border-wukong-gold/30 text-sm font-medium transition-all hover:border-wukong-gold/60"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-            </svg>
-            Copy CA
-          </button>
-        </div>
+        <div class="scroll-panel rounded-sm p-6 sm:p-10 reveal">
+          <div class="pilgrimage-path">
 
-        <!-- CTA Buttons -->
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a
-            href="#"
-            data-pump-link
-            target="_blank"
-            rel="noopener noreferrer"
-            class="btn-gold animate-glow-pulse w-full sm:w-auto px-10 py-4 rounded-xl font-display text-xl tracking-wider text-wukong-ink font-bold"
-          >
-            BUY NOW
-          </a>
-          <a
-            href="#"
-            data-dex-link
-            target="_blank"
-            rel="noopener noreferrer"
-            class="w-full sm:w-auto px-10 py-4 rounded-xl font-display text-xl tracking-wider font-bold border-2 border-wukong-gold/50 text-wukong-gold hover:bg-wukong-gold/10 hover:border-wukong-gold transition-all"
-          >
-            CHART
-          </a>
+            <!-- Step 1 -->
+            <div class="pilgrim-step reveal">
+              <div class="pilgrim-step__node">I</div>
+              <div class="pilgrim-step__scroll scroll-panel rounded-sm">
+                <div class="flex items-center gap-3 mb-3">
+                  <img src="phantom.png" alt="Phantom" class="h-9 w-9 object-contain" />
+                  <div>
+                    <p class="font-brush text-flame text-xs tracking-widest">第一關</p>
+                    <h3 class="font-epic text-xs tracking-widest text-celestial">FORGE YOUR WALLET</h3>
+                  </div>
+                </div>
+                <p class="font-tale text-sm text-[#c8b090]/75 leading-relaxed">
+                  Download <strong class="text-[#e8d5b0]">Phantom</strong> — your celestial vault. Guard your seed phrase as the King guards his staff. Tell no soul.
+                </p>
+              </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="pilgrim-step reveal reveal-delay-1">
+              <div class="pilgrim-step__node">II</div>
+              <div class="pilgrim-step__scroll scroll-panel rounded-sm">
+                <div class="flex items-center gap-3 mb-3">
+                  <img src="sol.png" alt="SOL" class="h-9 w-9 object-contain" />
+                  <div>
+                    <p class="font-brush text-flame text-xs tracking-widest">第二關</p>
+                    <h3 class="font-epic text-xs tracking-widest text-celestial">GATHER SOL ENERGY</h3>
+                  </div>
+                </div>
+                <p class="font-tale text-sm text-[#c8b090]/75 leading-relaxed">
+                  Acquire <strong class="text-[#e8d5b0]">SOL</strong> from the mortal exchanges. Send it to your Phantom wallet — fuel for the golden cloud.
+                </p>
+              </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="pilgrim-step reveal reveal-delay-2">
+              <div class="pilgrim-step__node">III</div>
+              <div class="pilgrim-step__scroll scroll-panel rounded-sm">
+                <div class="flex items-center gap-3 mb-3">
+                  <img src="pumpswap.png" alt="Pump Swap" class="h-9 w-9 object-contain" />
+                  <div>
+                    <p class="font-brush text-flame text-xs tracking-widest">第三關</p>
+                    <h3 class="font-epic text-xs tracking-widest text-celestial">ENTER PUMP SWAP</h3>
+                  </div>
+                </div>
+                <p class="font-tale text-sm text-[#c8b090]/75 leading-relaxed">
+                  Journey to <strong class="text-[#e8d5b0]">swap.pump.fun</strong>. Connect your wallet. Paste the $ANUKONG contract — or let the Buy Now seal guide you.
+                </p>
+              </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="pilgrim-step reveal reveal-delay-3">
+              <div class="pilgrim-step__node">IV</div>
+              <div class="pilgrim-step__scroll scroll-panel rounded-sm">
+                <div class="flex items-center gap-3 mb-3">
+                  <img src="logo.png" alt="ANUKONG" class="h-9 w-9 object-contain rounded-full" />
+                  <div>
+                    <p class="font-brush text-flame text-xs tracking-widest">第四關</p>
+                    <h3 class="font-epic text-xs tracking-widest text-celestial">CLAIM $ANUKONG</h3>
+                  </div>
+                </div>
+                <p class="font-tale text-sm text-[#c8b090]/75 leading-relaxed">
+                  Swap <strong class="text-[#e8d5b0]">SOL → $ANUKONG</strong>. Confirm the transaction. The King welcomes you to the army. The moon awaits.
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="text-center mt-10 reveal">
+            <a href="#" data-pump-link target="_blank" rel="noopener" class="btn-staff">
+              ⚡ Begin the Pilgrimage — Buy $ANUKONG
+            </a>
+          </div>
         </div>
       </div>
+    </section>
+
+    <div class="staff-divider max-w-4xl mx-auto px-4 reveal">
+      <div class="staff-divider__bar"></div>
+      <div class="staff-divider__gem"></div>
+      <div class="staff-divider__bar"></div>
     </div>
-  </header>
 
-  <!-- About -->
-  <section id="about" class="py-16 sm:py-24 px-4">
-    <div class="max-w-5xl mx-auto">
-      <div class="text-center mb-12">
-        <p class="font-chinese text-wukong-crimson text-sm tracking-[0.5em] mb-2">传说</p>
-        <h2 class="font-display text-4xl sm:text-5xl tracking-wider gold-text">THE LEGEND</h2>
-      </div>
-
-      <div class="grid md:grid-cols-3 gap-6">
-        <div class="p-6 rounded-2xl bg-wukong-smoke/60 border border-wukong-gold/10 hover:border-wukong-gold/30 transition-colors text-center">
-          <div class="text-4xl mb-3">🔥</div>
-          <h3 class="font-display text-xl tracking-wide text-wukong-gold mb-2">UNSTOPPABLE ENERGY</h3>
-          <p class="text-gray-400 text-sm leading-relaxed">Forged on Solana's blazing speed — faster than a golden cloud, stronger than any bear market.</p>
-        </div>
-        <div class="p-6 rounded-2xl bg-wukong-smoke/60 border border-wukong-crimson/20 hover:border-wukong-crimson/40 transition-colors text-center">
-          <div class="text-4xl mb-3">👑</div>
-          <h3 class="font-display text-xl tracking-wide text-wukong-gold mb-2">FEARLESS VIBES</h3>
-          <p class="text-gray-400 text-sm leading-relaxed">The Monkey King never backs down. Ansem Wukong charges headfirst into the meme arena with zero fear.</p>
-        </div>
-        <div class="p-6 rounded-2xl bg-wukong-smoke/60 border border-wukong-gold/10 hover:border-wukong-gold/30 transition-colors text-center">
-          <div class="text-4xl mb-3">🌙</div>
-          <h3 class="font-display text-xl tracking-wide text-wukong-gold mb-2">MOON-BOUND CHAOS</h3>
-          <p class="text-gray-400 text-sm leading-relaxed">Staff in hand, eyes on the moon. $ANUKONG rides the golden cloud straight to Valhalla.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- How to Buy -->
-  <section id="how-to-buy" class="py-16 sm:py-24 px-4 bg-wukong-smoke/40">
-    <div class="max-w-5xl mx-auto">
-      <div class="text-center mb-14">
-        <p class="font-chinese text-wukong-crimson text-sm tracking-[0.5em] mb-2">购买</p>
-        <h2 class="font-display text-4xl sm:text-5xl tracking-wider gold-text mb-3">HOW TO BUY</h2>
-        <p class="text-gray-400 max-w-lg mx-auto">Summon $ANUKONG in 4 legendary steps. Swap SOL and join the Monkey King's army.</p>
-      </div>
-
-      <div class="grid sm:grid-cols-2 gap-6">
-        <!-- Step 1 -->
-        <div class="step-card relative p-6 sm:p-8 rounded-2xl bg-wukong-ink/80">
-          <div class="flex items-start gap-4">
-            <div class="shrink-0 w-12 h-12 rounded-full bg-wukong-crimson/20 border border-wukong-crimson/40 flex items-center justify-center font-display text-2xl text-wukong-gold">1</div>
-            <div>
-              <div class="flex items-center gap-3 mb-3">
-                <img src="phantom.png" alt="Phantom Wallet" class="h-10 w-10 object-contain" />
-                <h3 class="font-display text-xl tracking-wide text-wukong-gold">GET A WALLET</h3>
-              </div>
-              <p class="text-gray-400 text-sm leading-relaxed">Download <strong class="text-gray-300">Phantom</strong> or your favorite Solana wallet. Create a new wallet and securely store your seed phrase. Never share it with anyone.</p>
-            </div>
+    <!-- ═══ CHAPTER III: HEAVEN CHART ═══ -->
+    <section id="heaven-chart" class="py-20 sm:py-28 px-4 sm:px-6">
+      <div class="max-w-4xl mx-auto">
+        <div class="chapter-mark reveal">
+          <div class="chapter-mark__seal">參</div>
+          <div>
+            <p class="font-brush text-flame text-xl sm:text-2xl">第三章 · The Heaven Chart</p>
+            <p class="font-tale text-celestial/40 text-xs tracking-[0.3em] mt-0.5">Witness the King's Ascent in Real Time</p>
           </div>
         </div>
 
-        <!-- Step 2 -->
-        <div class="step-card relative p-6 sm:p-8 rounded-2xl bg-wukong-ink/80">
-          <div class="flex items-start gap-4">
-            <div class="shrink-0 w-12 h-12 rounded-full bg-wukong-crimson/20 border border-wukong-crimson/40 flex items-center justify-center font-display text-2xl text-wukong-gold">2</div>
-            <div>
-              <div class="flex items-center gap-3 mb-3">
-                <img src="sol.png" alt="SOL" class="h-10 w-10 object-contain" />
-                <h3 class="font-display text-xl tracking-wide text-wukong-gold">GET SOME SOL</h3>
-              </div>
-              <p class="text-gray-400 text-sm leading-relaxed">Buy <strong class="text-gray-300">SOL</strong> on an exchange (Coinbase, Binance, etc.) and send it to your Phantom wallet. You'll need SOL for the swap and a small amount for gas fees.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Step 3 -->
-        <div class="step-card relative p-6 sm:p-8 rounded-2xl bg-wukong-ink/80">
-          <div class="flex items-start gap-4">
-            <div class="shrink-0 w-12 h-12 rounded-full bg-wukong-crimson/20 border border-wukong-crimson/40 flex items-center justify-center font-display text-2xl text-wukong-gold">3</div>
-            <div>
-              <div class="flex items-center gap-3 mb-3">
-                <img src="pumpswap.png" alt="Pump Swap" class="h-10 w-10 object-contain" />
-                <h3 class="font-display text-xl tracking-wide text-wukong-gold">GO TO PUMP SWAP</h3>
-              </div>
-              <p class="text-gray-400 text-sm leading-relaxed">Head to <strong class="text-gray-300">swap.pump.fun</strong> and connect your Phantom wallet. Paste the $ANUKONG contract address or click our Buy Now button to load it automatically.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Step 4 -->
-        <div class="step-card relative p-6 sm:p-8 rounded-2xl bg-wukong-ink/80">
-          <div class="flex items-start gap-4">
-            <div class="shrink-0 w-12 h-12 rounded-full bg-wukong-crimson/20 border border-wukong-crimson/40 flex items-center justify-center font-display text-2xl text-wukong-gold">4</div>
-            <div>
-              <div class="flex items-center gap-3 mb-3">
-                <img src="logo.png" alt="ANUKONG" class="h-10 w-10 object-contain rounded-full" />
-                <h3 class="font-display text-xl tracking-wide text-wukong-gold">SWAP SOL FOR $ANUKONG</h3>
-              </div>
-              <p class="text-gray-400 text-sm leading-relaxed">Select <strong class="text-gray-300">SOL → $ANUKONG</strong>, enter the amount you want to swap, set your slippage, and confirm the transaction. Welcome to the Monkey King's realm!</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="text-center mt-10">
-        <a
-          href="#"
-          data-pump-link
-          target="_blank"
-          rel="noopener noreferrer"
-          class="btn-gold inline-block px-10 py-4 rounded-xl font-display text-xl tracking-wider text-wukong-ink font-bold"
-        >
-          BUY $ANUKONG NOW
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Chart / Dexscreener -->
-  <section id="chart" class="py-16 sm:py-24 px-4">
-    <div class="max-w-5xl mx-auto">
-      <div class="text-center mb-10">
-        <p class="font-chinese text-wukong-crimson text-sm tracking-[0.5em] mb-2">图表</p>
-        <h2 class="font-display text-4xl sm:text-5xl tracking-wider gold-text mb-3">LIVE CHART</h2>
-        <p class="text-gray-400">Track the Monkey King's ascent in real time.</p>
-      </div>
-
-      <div class="rounded-2xl overflow-hidden border border-wukong-gold/20 bg-wukong-smoke/60 shadow-2xl" style="box-shadow: 0 0 40px rgba(212, 160, 23, 0.1);">
-        <div id="dexscreener-embed" style="position: relative; width: 100%; padding-bottom: 125%;">
+        <div class="chart-frame rounded-sm overflow-hidden reveal" style="position:relative; width:100%; padding-bottom:125%;">
           <iframe
             id="dex-iframe"
             src="about:blank"
-            style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: 0;"
+            style="position:absolute; width:100%; height:100%; top:0; left:0; border:0;"
             allowfullscreen
             title="ANUKONG Dexscreener Chart"
           ></iframe>
         </div>
-      </div>
 
-      <div class="text-center mt-6">
-        <a
-          href="#"
-          data-dex-link
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 text-wukong-gold hover:text-wukong-gold-light transition-colors text-sm font-medium"
-        >
-          Open full chart on Dexscreener
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-          </svg>
-        </a>
+        <div class="text-center mt-6 reveal">
+          <a href="#" data-dex-link target="_blank" rel="noopener"
+             class="font-tale text-sm text-celestial/60 hover:text-celestial-glow transition-colors tracking-widest">
+            開啟天命圖 → Open Full Chart on Dexscreener
+          </a>
+        </div>
       </div>
+    </section>
+
+    <div class="staff-divider max-w-4xl mx-auto px-4 reveal">
+      <div class="staff-divider__bar"></div>
+      <div class="staff-divider__gem"></div>
+      <div class="staff-divider__bar"></div>
     </div>
-  </section>
 
-  <!-- Join the Army -->
-  <section class="py-16 sm:py-20 px-4">
-    <div class="max-w-3xl mx-auto text-center">
-      <h2 class="font-display text-3xl sm:text-4xl tracking-wider gold-text mb-4">JOIN THE MONKEY ARMY</h2>
-      <p class="text-gray-400 mb-8">Follow the King. Spread the chaos. Ride the golden cloud.</p>
-      <div class="flex items-center justify-center gap-6">
-        <a href="https://t.me/AnsemWukong" target="_blank" rel="noopener noreferrer" class="group flex flex-col items-center gap-2 hover:scale-105 transition-transform">
-          <img src="tg.png" alt="Telegram" class="h-14 w-auto rounded-xl shadow-lg group-hover:shadow-wukong-gold/20" />
-          <span class="text-xs text-gray-500 group-hover:text-wukong-gold transition-colors">Telegram</span>
-        </a>
-        <a href="https://x.com/AnsemWukong" target="_blank" rel="noopener noreferrer" class="group flex flex-col items-center gap-2 hover:scale-105 transition-transform">
-          <div class="social-x p-3 rounded-xl shadow-lg group-hover:shadow-wukong-gold/20">
-            <img src="x.png" alt="X / Twitter" class="h-8 w-auto" />
+    <!-- ═══ EPILOGUE: JOIN THE ARMY ═══ -->
+    <section id="army" class="py-20 sm:py-24 px-4 sm:px-6">
+      <div class="max-w-2xl mx-auto text-center">
+        <div class="chapter-mark justify-center reveal">
+          <div class="chapter-mark__seal">終</div>
+          <div class="text-left">
+            <p class="font-brush text-flame text-xl sm:text-2xl">終章 · Join the Monkey Army</p>
+            <p class="font-tale text-celestial/40 text-xs tracking-[0.3em] mt-0.5">Ride the Golden Cloud Together</p>
           </div>
-          <span class="text-xs text-gray-500 group-hover:text-wukong-gold transition-colors">X / Twitter</span>
-        </a>
-      </div>
-    </div>
-  </section>
+        </div>
 
-  <!-- Footer -->
-  <footer class="border-t border-wukong-gold/10 py-8 px-4">
-    <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-      <div class="flex items-center gap-3">
-        <img src="logo.png" alt="Ansem Wukong" class="h-8 w-auto opacity-80" />
-        <span class="text-gray-500 text-sm">© 2026 Ansem Wukong ($ANUKONG)</span>
+        <p class="font-tale text-[#e8d5b0]/60 text-sm mb-10 reveal italic">
+          "A thousand monkeys, one King, one moon. Follow the path. Spread the legend."
+        </p>
+
+        <div class="flex justify-center gap-10 reveal">
+          <a href="https://t.me/AnsemWukong" target="_blank" rel="noopener"
+             class="group flex flex-col items-center gap-3 hover:-translate-y-2 transition-transform duration-300">
+            <div class="p-1 rounded" style="box-shadow: 0 0 30px rgba(212,168,75,0.2);">
+              <img src="tg.png" alt="Telegram" class="h-14 w-auto rounded" />
+            </div>
+            <span class="font-tale text-xs tracking-[0.3em] text-celestial/40 group-hover:text-celestial transition-colors">Telegram</span>
+          </a>
+          <a href="https://x.com/AnsemWukong" target="_blank" rel="noopener"
+             class="group flex flex-col items-center gap-3 hover:-translate-y-2 transition-transform duration-300">
+            <div class="social-x-bg p-3 rounded" style="box-shadow: 0 0 30px rgba(212,168,75,0.2);">
+              <img src="x.png" alt="X" class="h-10 w-auto" />
+            </div>
+            <span class="font-tale text-xs tracking-[0.3em] text-celestial/40 group-hover:text-celestial transition-colors">X / Twitter</span>
+          </a>
+        </div>
       </div>
-      <p class="text-gray-600 text-xs text-center sm:text-right max-w-sm">
-        This is a meme coin with no intrinsic value. DYOR. Not financial advice.
-      </p>
-    </div>
-  </footer>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-celestial/10 py-8 px-4 sm:px-6" style="background: rgba(6,5,4,0.9);">
+      <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <img src="logo.png" alt="" class="h-7 w-auto opacity-60" />
+          <span class="font-tale text-xs text-celestial/30 tracking-widest">© 2026 Ansem Wukong · $ANUKONG</span>
+        </div>
+        <p class="font-tale text-[10px] text-celestial/20 text-center sm:text-right max-w-xs leading-relaxed">
+          Meme coin. No intrinsic value. DYOR. Not financial advice. 猴王万岁.
+        </p>
+      </div>
+    </footer>
+
+  </main>
 
   <script>
-    // Update this single value when the contract address is live
     const CONTRACT_ADDRESS = 'TBA';
-
     const PUMP_SWAP_URL = `https://swap.pump.fun/?input=So11111111111111111111111111111111111111112&output=${CONTRACT_ADDRESS}`;
     const DEXSCREENER_URL = `https://dexscreener.com/solana/${CONTRACT_ADDRESS}`;
     const DEXSCREENER_EMBED = `https://dexscreener.com/solana/${CONTRACT_ADDRESS}?embed=1&loadChartSettings=0&chartLeftToolbar=0&chartTheme=dark&theme=dark&chartStyle=0&chartType=usd&interval=15`;
 
+    /* ── Links & CA ── */
     document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('ca-text').textContent = CONTRACT_ADDRESS;
-      document.querySelectorAll('[data-pump-link]').forEach(el => { el.href = PUMP_SWAP_URL; });
-      document.querySelectorAll('[data-dex-link]').forEach(el => { el.href = DEXSCREENER_URL; });
+      document.querySelectorAll('[data-pump-link]').forEach(el => el.href = PUMP_SWAP_URL);
+      document.querySelectorAll('[data-dex-link]').forEach(el => el.href = DEXSCREENER_URL);
       const iframe = document.getElementById('dex-iframe');
       if (iframe) iframe.src = DEXSCREENER_EMBED;
+
+      initParticles();
+      initParallax();
+      initReveal();
+      initNarrativeTypewriter();
     });
 
     function copyCA() {
-      navigator.clipboard.writeText(CONTRACT_ADDRESS).then(() => {
-        const toast = document.getElementById('toast');
-        toast.classList.add('show');
-        setTimeout(() => toast.classList.remove('show'), 2500);
-      }).catch(() => {
+      const show = () => {
+        const t = document.getElementById('toast');
+        t.classList.add('show');
+        setTimeout(() => t.classList.remove('show'), 2800);
+      };
+      navigator.clipboard.writeText(CONTRACT_ADDRESS).then(show).catch(() => {
         const el = document.createElement('textarea');
         el.value = CONTRACT_ADDRESS;
         document.body.appendChild(el);
         el.select();
         document.execCommand('copy');
         document.body.removeChild(el);
-        const toast = document.getElementById('toast');
-        toast.classList.add('show');
-        setTimeout(() => toast.classList.remove('show'), 2500);
+        show();
       });
+    }
+
+    /* ── Parallax background ── */
+    function initParallax() {
+      const bg = document.getElementById('parallax-bg');
+      let ticking = false;
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          requestAnimationFrame(() => {
+            const y = window.scrollY;
+            const scale = 1.08 + y * 0.00008;
+            const ty  = y * 0.18;
+            bg.style.transform = `scale(${scale}) translateY(${ty}px)`;
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }, { passive: true });
+    }
+
+    /* ── Floating clouds & embers ── */
+    function initParticles() {
+      const container = document.getElementById('particles');
+      const clouds = 6;
+      const embers = 18;
+
+      for (let i = 0; i < clouds; i++) {
+        const c = document.createElement('div');
+        c.className = 'cloud';
+        const size = 120 + Math.random() * 200;
+        c.style.cssText = `
+          width:${size}px; height:${size * 0.5}px;
+          top:${10 + Math.random() * 70}%;
+          left:-20%;
+          animation-duration:${25 + Math.random() * 30}s;
+          animation-delay:${Math.random() * 20}s;
+        `;
+        container.appendChild(c);
+      }
+
+      for (let i = 0; i < embers; i++) {
+        const e = document.createElement('div');
+        e.className = 'ember';
+        e.style.cssText = `
+          left:${5 + Math.random() * 90}%;
+          animation-duration:${6 + Math.random() * 10}s;
+          animation-delay:${Math.random() * 12}s;
+        `;
+        container.appendChild(e);
+      }
+    }
+
+    /* ── Scroll reveal ── */
+    function initReveal() {
+      const els = document.querySelectorAll('.reveal');
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            obs.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      els.forEach(el => obs.observe(el));
+    }
+
+    /* ── Narrative typewriter on hero ── */
+    function initNarrativeTypewriter() {
+      const el = document.getElementById('narrative-text');
+      const full = el.textContent.trim();
+      el.textContent = '';
+      el.classList.add('narrative-cursor');
+      let i = 0;
+      const tick = () => {
+        if (i < full.length) {
+          el.textContent += full[i++];
+          setTimeout(tick, 28 + Math.random() * 18);
+        } else {
+          el.classList.remove('narrative-cursor');
+        }
+      };
+      setTimeout(tick, 800);
     }
   </script>
 </body>
